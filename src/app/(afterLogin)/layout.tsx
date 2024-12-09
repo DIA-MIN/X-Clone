@@ -1,12 +1,17 @@
 import Link from 'next/link';
 import { BsTwitterX } from 'react-icons/bs';
-import { FiSearch } from 'react-icons/fi';
 import NavMenu from './_component/NavMenu';
 import LogoutButton from './_component/LogoutButton';
 import TrendSection from './_component/TrendSection';
 import FollowRecommend from './_component/FollowRecommend';
+import RightSearch from './_component/RightSearch';
 
-export default function AfterLoginLayout({ children }) {
+type Props = {
+  children: React.ReactNode;
+  modal: React.ReactNode;
+};
+
+export default function AfterLoginLayout({ children, modal }: Props) {
   return (
     <div className="flex items-stretch">
       <header className="flex items-end flex-col flex-grow">
@@ -37,16 +42,13 @@ export default function AfterLoginLayout({ children }) {
       </header>
       <div className="flex items-start h-dvh flex-grow">
         <div className="flex h-full w-[990px] justify-between">
-          <main className="w-[600px]">{children}</main>
+          <main className="w-[600px] h-full border-x border-x-neutral-700">
+            {children}
+          </main>
           <section className="w-[350px] h-full">
-            <div className="mb-[72px]">
-              <form className="w-[350px] h-[53px] fixed bg-zinc-800 rounded-full flex items-center mt-[6px] mb-3 focus-within:ring-2 ring-blue-500 group">
-                <FiSearch className="text-xl text-zinc-400 ml-5 group-focus-within:text-blue-500" />
-                <input className="p-3 ml-[5px] text-[15px] border-none outline-none bg-inherit w-4/5" />
-              </form>
-            </div>
+            <RightSearch />
             <TrendSection />
-            <div className="w-full rounded-2xl border border-neutral-700 border-solid mb-3">
+            <div className="w-full rounded-2xl border border-neutral-700 border-solid my-3">
               <div className="py-3 px-4">
                 <span className="text-xl font-extrabold">Who to follow</span>
               </div>
@@ -66,6 +68,7 @@ export default function AfterLoginLayout({ children }) {
           </section>
         </div>
       </div>
+      {modal}
     </div>
   );
 }
