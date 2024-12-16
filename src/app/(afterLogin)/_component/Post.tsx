@@ -5,12 +5,19 @@ import { MdVerified } from 'react-icons/md';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko'; // 한국어 가져오기
 import ActionButtons from './ActionButtons';
+import PostArticle from './PostArticle';
+import { faker } from '@faker-js/faker';
 
 dayjs.extend(relativeTime);
 dayjs.locale('ko');
 
-export default function Post() {
+type Props = {
+  noImg?: boolean;
+};
+
+export default function Post({ noImg }: Props) {
   const target = {
+    postId: 1,
     User: {
       id: 'elonmusk',
       nickname: 'Elon Musk',
@@ -18,11 +25,15 @@ export default function Post() {
     },
     content: 'Cancel culture has been canceled.',
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any[],
   };
 
+  if (Math.random() > 0.5 && !noImg) {
+    target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
+  }
+
   return (
-    <article className="px-4 pt-3 overflow-x-hidden overflow-y-hidden border-b border-b-zinc-700  hover:bg-white hover:bg-opacity-5 cursor-pointer">
+    <PostArticle post={target}>
       <div className="flex ">
         <div className="basis-10 grow-0 items-center mr-2">
           <Link href={`/${target.User.id}`}>
@@ -52,14 +63,23 @@ export default function Post() {
           <div className="leading-5 text-[15px] font-normal">
             {target.content}
           </div>
-          {target.Images.length > 0 && (
-            <div className="mt-3 rounded-2xl border border-solid border-zinc-700">
-              {/* <Image src={} */}
-            </div>
-          )}
-          <ActionButtons />
+          {/* <div className="mt-3 rounded-2xl border border-solid border-zinc-700"> */}
+          <div className="mt-3">
+            {target.Images && target.Images.length > 0 && (
+              <Link
+                href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}
+              >
+                <img
+                  src={target.Images[0]?.link}
+                  alt=""
+                  className="rounded-2xl"
+                />
+              </Link>
+            )}
+          </div>
+          <ActionButtons white />
         </div>
       </div>
-    </article>
+    </PostArticle>
   );
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, useRef, useState } from 'react';
 import { RiImage2Fill } from 'react-icons/ri';
 
-export default function PostForm() {
+export default function ReplyForm() {
   const [content, setContent] = useState('');
   const imageRef = useRef<HTMLInputElement>(null);
 
@@ -29,7 +29,7 @@ export default function PostForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex px-4 border-b border-x border-b-zinc-700 border-x-zinc-700"
+      className="flex px-4 border-b border-b-zinc-700 border-x border-x-zinc-700"
     >
       <div className="mr-2 basis-10 grow-0 pt-6">
         <div className="h-10 w-full overflow-x-visible overflow-y-visible block">
@@ -44,11 +44,11 @@ export default function PostForm() {
             value={content}
             onChange={onChange}
             className="bg-transparent w-full resize-none placeholder:text-lg focus:outline-none py-[2px]"
-            placeholder="What is happening?!"
-            rows={3}
+            placeholder="Post your reply"
+            rows={1}
           ></textarea>
         </div>
-        <div className="p-2 flex border-t border-t-zinc-700 w-full justify-between">
+        <div className="p-2 flex w-full justify-between">
           <div className="flex items-center text-blue-500">
             <input
               type="file"
@@ -65,7 +65,7 @@ export default function PostForm() {
             </div>
           </div>
           <button className="min-h-8 px-4 ml-3 rounded-full bg-blue-500 box-border font-bold hover:bg-opacity-80">
-            Post
+            Reply
           </button>
         </div>
       </div>

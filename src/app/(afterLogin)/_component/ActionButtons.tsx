@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { FaRegHeart, FaRetweet } from 'react-icons/fa';
 import { TbMessageCircle } from 'react-icons/tb';
 
-export default function ActionButtons() {
+type Props = {
+  white?: boolean;
+};
+
+export default function ActionButtons({ white }: Props) {
   const [commented, setCommented] = useState(false);
   const [rePosted, setRePosted] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -19,13 +23,17 @@ export default function ActionButtons() {
     setLiked((liked) => !liked);
   };
 
+  const defaultColor = !white ? 'text-white' : 'text-zinc-500';
+
+  console.log(defaultColor);
+
   return (
     <div className="flex mt-3 w-full max-w-[600px]">
       <div className="flex items-center w-full justify-between">
         <div
           onClick={onClickComment}
           className={`group flex items-center justify-center hover:text-sky-500 ${
-            commented ? 'text-sky-500' : 'text-zinc-500'
+            commented ? 'text-sky-500' : defaultColor
           }`}
         >
           <div className="flex items-center justify-center rounded-full w-8 h-8 group-hover:bg-opacity-15 group-hover:bg-sky-500">
@@ -36,7 +44,7 @@ export default function ActionButtons() {
         <div
           onClick={onClickRePost}
           className={`group flex items-center justify-center hover:text-green-400 ${
-            rePosted ? 'text-green-400' : 'text-zinc-500'
+            rePosted ? 'text-green-400' : defaultColor
           }`}
         >
           <div className="flex items-center justify-center rounded-full w-8 h-8 group-hover:bg-green-400 group-hover:bg-opacity-15 ">
@@ -47,7 +55,7 @@ export default function ActionButtons() {
         <div
           onClick={onClickLike}
           className={`group flex items-center justify-center hover:text-pink-600 ${
-            liked ? 'text-pink-600' : 'text-zinc-500'
+            liked ? 'text-pink-600' : defaultColor
           }`}
         >
           <div className="flex items-center justify-center rounded-full w-8 h-8 group-hover:bg-pink-600 group-hover:bg-opacity-15 ">

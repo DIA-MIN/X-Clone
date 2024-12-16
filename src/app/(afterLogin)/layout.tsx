@@ -42,9 +42,7 @@ export default function AfterLoginLayout({ children, modal }: Props) {
       </header>
       <div className="flex items-start h-dvh flex-grow">
         <div className="flex h-full w-[990px] justify-between">
-          <main className="w-[600px] h-full border-x border-x-neutral-700">
-            {children}
-          </main>
+          <main className="w-[600px] h-full">{children}</main>
           <section className="w-[350px] h-full">
             <RightSearch />
             <TrendSection />
