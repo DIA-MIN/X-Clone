@@ -22,7 +22,7 @@ export default function NavMenu() {
             <div
               className={`text-xl ${
                 segment === 'home' ? 'font-bold' : 'font-normal'
-              } ml-5 mr-4`}
+              } ml-5 mr-4 hidden xl:block`}
             >
               Home
             </div>
@@ -42,7 +42,7 @@ export default function NavMenu() {
                 segment && ['search', 'explore'].includes(segment)
                   ? 'font-bold'
                   : 'font-normal'
-              } ml-5 mr-4`}
+              } ml-5 mr-4 hidden xl:block`}
             >
               Explore
             </div>
@@ -59,7 +59,7 @@ export default function NavMenu() {
             <div
               className={`text-xl ${
                 segment === 'messages' ? 'font-bold' : 'font-normal'
-              } ml-5 mr-4`}
+              } ml-5 mr-4 hidden xl:block`}
             >
               Messages
             </div>
@@ -76,7 +76,7 @@ export default function NavMenu() {
             <div
               className={`text-xl ${
                 segment === me?.id ? 'font-bold' : 'font-normal'
-              } ml-5 mr-4`}
+              } ml-5 mr-4 hidden xl:block`}
             >
               Profile
             </div>

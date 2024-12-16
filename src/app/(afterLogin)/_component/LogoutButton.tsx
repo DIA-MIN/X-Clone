@@ -19,7 +19,7 @@ export default function LogoutButton() {
         {/* <div className='w-[40px] h-[40px]'>
         <img src={me.image} alt={me.id} />
       </div> */}
-        <div className="flex flex-col m-3 text-[15px] text-left">
+        <div className="flex-col m-3 text-[15px] text-left hidden xl:flex">
           <div className="font-bold">{me.nickname}</div>
           <div className="text-neutral-500">@{me.id}</div>
         </div>

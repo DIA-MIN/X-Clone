@@ -5,6 +5,7 @@ import LogoutButton from './_component/LogoutButton';
 import TrendSection from './_component/TrendSection';
 import FollowRecommend from './_component/FollowRecommend';
 import RightSearch from './_component/RightSearch';
+import { RiQuillPenLine } from 'react-icons/ri';
 
 type Props = {
   children: React.ReactNode;
@@ -15,8 +16,8 @@ export default function AfterLoginLayout({ children, modal }: Props) {
   return (
     <div className="flex items-stretch">
       <header className="flex items-end flex-col flex-grow">
-        <section className="w-[275px] h-dvh">
-          <div className="flex flex-col w-[275px] fixed h-dvh">
+        <section className="w-[72px] h-dvh xl:w-[275px] xl:p-2">
+          <div className="flex flex-col items-center w-[72px] fixed h-dvh xl:w-[275px] xl:items-start">
             <div className="py-1 flex items-center h-[58px]">
               <Link
                 href="/home"
@@ -31,9 +32,13 @@ export default function AfterLoginLayout({ children, modal }: Props) {
               </ul>
               <Link
                 href="/compose/post"
-                className="flex items-center justify-center rounded-full w-[233px] px-8 my-4 h-[52px] bg-blue-500 font-bold hover:bg-opacity-85"
+                className="flex items-center justify-center rounded-full w-[50px] h-[50px] px-0 my-4 bg-blue-500 font-bold hover:bg-opacity-85 xl:w-[233px] xl:h-[52px] xl:px-8"
               >
-                Post
+                {/* 1280px 초과에서만 보이는 Post */}
+                <span className="hidden xl:inline">Post</span>
+
+                {/* 1280px 이하에서만 보이는 아이콘 */}
+                <RiQuillPenLine className="xl:hidden" />
               </Link>
             </nav>
             <LogoutButton />
@@ -41,9 +46,9 @@ export default function AfterLoginLayout({ children, modal }: Props) {
         </section>
       </header>
       <div className="flex items-start h-dvh flex-grow">
-        <div className="flex h-full w-[990px] justify-between">
+        <div className="flex h-full w-[600px] justify-between xl:w-[990px]">
           <main className="w-[600px] h-full">{children}</main>
-          <section className="w-[350px] h-full">
+          <section className="hidden w-[350px] h-full lg:block">
             <RightSearch />
             <TrendSection />
             <div className="w-full rounded-2xl border border-neutral-700 border-solid my-3">
